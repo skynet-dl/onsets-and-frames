@@ -80,7 +80,8 @@ def train(logdir, device, iterations, resume_iteration, checkpoint_interval, tra
         optimizer = torch.optim.Adam(model.parameters(), learning_rate)
         resume_iteration = 0
     else:
-        model_path = os.path.join(logdir, f'model-{resume_iteration}.pt')
+        # model_path = os.path.join(logdir, f'model-{resume_iteration}.pt')
+        model_path = os.path.join(logdir, 'model-{}.pt'.format(resume_iteration))
         model = torch.load(model_path)
         optimizer = torch.optim.Adam(model.parameters(), learning_rate)
         optimizer.load_state_dict(torch.load(os.path.join(logdir, 'last-optimizer-state.pt')))
@@ -112,5 +113,5 @@ def train(logdir, device, iterations, resume_iteration, checkpoint_interval, tra
             model.train()
 
         if i % checkpoint_interval == 0:
-            torch.save(model, os.path.join(logdir, f'model-{i}.pt'))
+            torch.save(model, os.path.join(logdir, 'model-{}.pt'.format(i)))
             torch.save(optimizer.state_dict(), os.path.join(logdir, 'last-optimizer-state.pt'))
