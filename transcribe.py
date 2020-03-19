@@ -57,7 +57,8 @@ def transcribe_file(model_file, flac_paths, save_path, sequence_length,
     summary(model)
 
     for flac_path in flac_paths:
-        print(f'Processing {flac_path}...', file=sys.stderr)
+        # print(f'Processing {flac_path}...', file=sys.stderr)
+        print('Processing {}...'.format(flac_path), file=sys.stderr)
         audio = load_and_process_audio(flac_path, sequence_length, device)
         predictions = transcribe(model, audio)
 

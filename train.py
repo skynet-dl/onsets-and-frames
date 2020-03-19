@@ -33,7 +33,8 @@ def config():
     if torch.cuda.is_available() and torch.cuda.get_device_properties(torch.cuda.current_device()).total_memory < 10e9:
         batch_size //= 2
         sequence_length //= 2
-        print(f'Reducing batch size to {batch_size} and sequence_length to {sequence_length} to save memory')
+        # print(f'Reducing batch size to {batch_size} and sequence_length to {sequence_length} to save memory')
+        print('Reducing batch size to {} and sequence_length to {} to save memory'.format(batch_size, sequence_length))
 
     learning_rate = 0.0006
     learning_rate_decay_steps = 10000
