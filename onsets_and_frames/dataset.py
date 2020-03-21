@@ -147,7 +147,7 @@ class MAESTRO(PianoRollAudioDataset):
             midis = sorted(glob(os.path.join(self.path, group, '*.midi')))
             files = list(zip(flacs, midis))
             if len(files) == 0:
-                raise RuntimeError(f'Group {group} is empty')
+                raise RuntimeError('Group {} is empty'.format(group))
         else:
             metadata = json.load(open(os.path.join(self.path, 'maestro-v1.0.0.json')))
             files = sorted([(os.path.join(self.path, row['audio_filename'].replace('.wav', '.flac')),
